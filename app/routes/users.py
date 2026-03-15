@@ -2,15 +2,17 @@ from app.core.security import get_current_user
 from app.database import get_session
 from app.models.users import User, UserRegister, UserResponse
 from fastapi import APIRouter, HTTPException, Depends
-from passlib.context import CryptContext
+import bcrypt
 from sqlmodel import Session, select
 
 router = APIRouter(prefix="/users", tags=["users"])
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(password.encode("utf-8"), salt).decode("utf-8")
+
+def verify_password(plain: str, hashed: str) -> bool:
+    return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
 
 @router.post("/register", response_model=UserResponse)
 def register(user_data: UserRegister, session: Session = Depends(get_session)):
