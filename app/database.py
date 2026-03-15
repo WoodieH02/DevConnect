@@ -1,6 +1,6 @@
 import os
-from sqlmodel import create_engine, Session, SQLModel
 from dotenv import load_dotenv
+from sqlmodel import create_engine, Session, SQLModel
 
 load_dotenv()  # reads the .env file
 

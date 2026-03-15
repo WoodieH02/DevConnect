@@ -1,9 +1,9 @@
-from fastapi import APIRouter, HTTPException, Depends
-from sqlmodel import Session, select
-from passlib.context import CryptContext
-from app.models.users import User, UserRegister, UserResponse
-from app.database import get_session
 from app.core.security import get_current_user
+from app.database import get_session
+from app.models.users import User, UserRegister, UserResponse
+from fastapi import APIRouter, HTTPException, Depends
+from passlib.context import CryptContext
+from sqlmodel import Session, select
 
 router = APIRouter(prefix="/users", tags=["users"])
 

@@ -1,10 +1,10 @@
-from fastapi import FastAPI
 from app.database import create_db
-from app.routes import users, auth, post, likes, comments
-from app.models.users import User
-from app.models.post import Post
-from app.models.like import Like
 from app.models.comment import Comment
+from app.models.like import Like
+from app.models.post import Post
+from app.models.users import User
+from app.routes import users, auth, post, likes, comments
+from fastapi import FastAPI
 
 app = FastAPI(title="DevConnect API")
 
