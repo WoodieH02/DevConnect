@@ -21,6 +21,8 @@ class UserRegister(SQLModel):
     username: str
     email: str
     password: str
+    bio: Optional[str]
+    github_url: Optional[str]
 
 class UserResponse(SQLModel):
     id: int
